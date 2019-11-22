@@ -25,7 +25,7 @@ public class StatsController {
 
     @GetMapping(value = "/stats/all")
     public String stats(Model model) {
-        List<GameEntity> gameEntities = gameService.findAll();
+        List<GameEntity> gameEntities = gameService.findAllFinished();
         model.addAttribute("statsType", "all");
         model.addAttribute("games", gameEntities);
         return "stats";

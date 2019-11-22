@@ -74,11 +74,11 @@ public class GameController {
                 redirectAttributes.addFlashAttribute("error_message",
                         "Invalid number. Please set value in range : {-1, 0, 1}");
             }
+        }
 
-            if (game.isFinished()) {
-                redirectAttributes.addFlashAttribute("isGameFinished", game.isFinished());
-                redirectAttributes.addFlashAttribute("info_message", game.getInfoMessage());
-            }
+        if (game.isFinished()) {
+            redirectAttributes.addFlashAttribute("isGameFinished", game.isFinished());
+            redirectAttributes.addFlashAttribute("info_message", game.getInfoMessage());
         }
 
         return "redirect:/game";

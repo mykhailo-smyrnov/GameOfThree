@@ -84,13 +84,15 @@ public class ManagePlayService {
         }
 
         boolean isSuccess = false;
+        PlayerTypeEntity winner = null;
         if (MOVE_BY_HUMAN.equalsIgnoreCase(moveByName)) {
             PlayerTypeEntity humanPlayerType = playerTypeService.findByName(MOVE_BY_HUMAN);
             gameStatsService.create(gameEntity, humanPlayerType, moveNumber);
             currentNumber = currentNumber + moveNumber;
             isSuccess = isDivisibleBy(currentNumber);
-            if (isSuccess)
-                gameEntity.setWinner(humanPlayerType);
+            if (isSuccess) {
+                winner = humanPlayerType;
+            }
         }
         if (!isSuccess) {
             PlayerTypeEntity computerPlayerType = playerTypeService.findByName(MOVE_BY_COMPUTER);
@@ -98,8 +100,9 @@ public class ManagePlayService {
             gameStatsService.create(gameEntity, computerPlayerType, moveNumber);
             currentNumber = currentNumber + moveNumber;
             isSuccess = isDivisibleBy(currentNumber);
-            if (isSuccess)
-                gameEntity.setWinner(computerPlayerType);
+            if (isSuccess) {
+                winner = computerPlayerType;
+            }
         }
 
         // update model and db entity
@@ -110,6 +113,8 @@ public class ManagePlayService {
             GameStatusEntity gameStatusFinished = gameStatusService.findByName(GAME_STATUS_FINISHED);
             gameEntity.setStatus(gameStatusFinished);
             gameEntity.setFinishDate(LocalDateTime.now());
+            gameEntity.setWinner(winner);
+            game.setInfoMessage(winner.getName().toUpperCase() + " win!");
             game.setFinished(true);
         }
         gameService.update(gameEntity);

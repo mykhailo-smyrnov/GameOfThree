@@ -58,8 +58,8 @@
                                         <td th:text="${game.winner.name}" />
                                         <td th:text="${game.initNumber}" />
                                         <td th:text="${game.currentNumber}" />
+                                        <td th:text="${#temporals.format(game.startDate, 'dd-MM-yyyy HH:mm')}" />
                                         <td th:text="${#temporals.format(game.finishDate, 'dd-MM-yyyy HH:mm')}" />
-                                        <td th:text="${game.finishDate}" />
                                     </tr>
                                 </table>
                             </div>

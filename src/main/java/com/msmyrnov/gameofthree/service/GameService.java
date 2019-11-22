@@ -34,8 +34,8 @@ public class GameService {
         return gameEntity;
     }
 
-    public List<GameEntity> findAll() {
-        return gameRepository.findAll();
+    public List<GameEntity> findAllFinished() {
+        return gameRepository.findAllByWinnerIsNotNull();
     }
 
     public GameEntity findActiveGameByAccountName(String accountName) {
