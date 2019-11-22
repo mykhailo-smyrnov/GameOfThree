@@ -44,7 +44,7 @@
                                     <tr>
                                         <th>User</th>
                                         <th>Game started by</th>
-                                        <th>Status</th>
+<!--                                        <th>Status</th>-->
                                         <th>Winner</th>
                                         <th>Init number</th>
                                         <th>Final number</th>
@@ -54,7 +54,7 @@
                                     <tr th:each="game: ${games}">
                                         <td th:text="${game.account.name}" />
                                         <td th:text="${game.startedBy.name}" />
-                                        <td th:text="${game.status.name}" />
+<!--                                        <td th:text="${game.status.name}" />-->
                                         <td th:text="${game.winner.name}" />
                                         <td th:text="${game.initNumber}" />
                                         <td th:text="${game.currentNumber}" />
