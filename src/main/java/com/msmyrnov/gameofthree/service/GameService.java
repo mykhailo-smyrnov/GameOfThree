@@ -38,11 +38,7 @@ public class GameService {
         return gameRepository.findAll();
     }
 
-    public GameEntity findByAccountAndStatus(AccountEntity account, GameStatusEntity status) {
-        return gameRepository.findByAccountAndStatus(account, status);
-    }
-
-    public GameEntity findGameInProgress(String accountName) {
+    public GameEntity findActiveGameByAccountName(String accountName) {
         return gameRepository.findByAccountNameAndWinnerIsNull(accountName);
     }
 

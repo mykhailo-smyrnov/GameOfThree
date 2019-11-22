@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GameRepository extends JpaRepository<GameEntity, Long> {
 
-    GameEntity findByAccountAndStatus(AccountEntity account, GameStatusEntity status);
-
     GameEntity findByAccountNameAndWinnerIsNull(String accountName);
 
 }

@@ -53,7 +53,7 @@ public class ManagePlayService {
 
     public Game getGameInProgress(String userName) {
         Game game = null;
-        GameEntity gameEntity = gameService.findGameInProgress(userName);
+        GameEntity gameEntity = gameService.findActiveGameByAccountName(userName);
         if (gameEntity != null) {
             StringBuilder sb = new StringBuilder();
             sb.append("Current number is : ").append(gameEntity.getCurrentNumber());
@@ -66,16 +66,15 @@ public class ManagePlayService {
 
     //    @Transactional
     public Game play(String userName, String moveByName, Integer moveNumber) {
-        AccountEntity account = accountService.findByName(userName);
-        PlayerTypeEntity playerType = playerTypeService.findByName(moveByName);
-        GameStatusEntity gameStatusStarted = gameStatusService.findByName(GAME_STATUS_STARTED);
-
-        // check is there already started
-        GameEntity gameEntity = gameService.findByAccountAndStatus(account, gameStatusStarted);
+        // check is there already started game
+        GameEntity gameEntity = gameService.findActiveGameByAccountName(userName);
 
         // init numbers
         int currentNumber;
         if (gameEntity == null) {
+            AccountEntity account = accountService.findByName(userName);
+            PlayerTypeEntity playerType = playerTypeService.findByName(moveByName);
+            GameStatusEntity gameStatusStarted = gameStatusService.findByName(GAME_STATUS_STARTED);
             currentNumber = generateRandomIntegerInRange(RANDOM_MIN, RANDOM_MAX);
             gameEntity = gameService.create(account, playerType, gameStatusStarted, currentNumber);
             if (MOVE_BY_HUMAN.equalsIgnoreCase(moveByName))
