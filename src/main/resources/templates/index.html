@@ -1,0 +1,66 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+
+<!-- Title and other stuffs -->
+<title>Game Of Three</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+
+<!-- Stylesheets -->
+<link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Custom CSS -->
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"/>
+
+<!-- Body -->
+<body>
+
+<header class="header">
+    <nav>
+        <div class="container">
+            <span class="title">Game Of Three</span>
+        </div>
+    </nav>
+</header>
+
+<div class="content">
+    <div class="mainbar" style="margin-left:0;">
+        <div class="matter">
+            <div class="container">
+
+                <!--                Root Section-->
+                <div class="row shadow-sm p-3 mb-5 bg-white rounded">
+                    <div class="col-md-12">
+                        <div class="widget" style="margin-left: auto; margin-right: auto; width: 70%;">
+                            <div class="widget-head">
+                                <p class="pull-left text-info font-weight-bold">Register In The App</p>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="widget-content medias">
+                                <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+                                    <div class="form-group">
+                                        <p th:if="${errorMessage != null}" class="text-danger" th:text="${errorMessage}"></p>
+                                        <input type="text" th:field="*{name}" />
+                                        <button type="submit">Register</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="widget-foot">
+                                <a href="/stats/all">Click here to view stats</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- JS -->
+<script src="webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
